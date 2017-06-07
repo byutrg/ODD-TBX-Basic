@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules startMode="root" xmlns="http://purl.oclc.org/dsdl/nvdl/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+    <mode name="root">
+        <namespace ns="http://www.iso.org/ns/TBX">
+            <validate
+                schema="TBX_ISO30042-Core.rng">
+                <mode>
+                    <namespace ns="http://www.tbxinfo.net/ns/dct/basic">
+                        <validate
+                            schema="TBX_ISO30042-Basic%20-%20DCT.rng"/>
+                        
+                    </namespace>
+                </mode>
+            </validate>
+        </namespace>
+        <anyNamespace>
+            <reject/>
+        </anyNamespace>
+    </mode>
+</rules>

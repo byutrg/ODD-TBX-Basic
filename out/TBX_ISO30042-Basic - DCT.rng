@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="http://www.tbxinfo.net/ns/dct/basic"><!--
+Schema generated from ODD source 2017-06-05T15:38:24Z. .
+TEI Edition: Version 2.8.0. Last updated on
+	6th April 2015, revision 13197
+TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.8.0/
+  
+--><!---->
+   <sch:ns xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+           prefix="tei"
+           uri="http://www.tei-c.org/ns/1.0"/>
+   <define name="admin">
+      <choice>
+                                <ref name="customerSubset"/>
+                                <ref name="projectSubset"/>
+                                <ref name="source"/>
+                            </choice>
+   </define>
+   <define name="descrip">
+      <choice>
+                                <ref name="context"/>
+                                <ref name="definition"/>
+                                <ref name="subjectField"/>
+                            </choice>
+   </define>
+   <define name="ref">
+      <ref name="crossReference"/>
+   </define>
+   <define name="termNote">
+      <choice>
+                                <ref name="administrativeStatus"/>
+                                <ref name="geographicalUsage"/>
+                                <ref name="grammaticalGender"/>
+                                <ref name="partOfSpeech"/>
+                                <ref name="termLocation"/>
+                                <ref name="termType"/>
+                            </choice>
+   </define>
+   <define name="transac">
+      <ref name="transactionType"/>
+   </define>
+   <define name="transacNote">
+      <ref name="responsibility"/>
+   </define>
+   <define name="xref">
+      <choice>
+                                
+                                <ref name="xGraphic"/>
+                            </choice>
+   </define>
+   <define name="entity.noteText">
+      <zeroOrMore>
+         <choice>
+                                <text/>
+                                
+                                
+                                
+                                
+                                
+                            </choice>
+      </zeroOrMore>
+   </define>
+   <define name="entity.noteLinkInfo">
+      <zeroOrMore>
+         <choice>
+                                <ref name="admin"/>
+                                <ref name="adminGrp"/>
+                                <ref name="transacGrp"/>
+                                
+                                <ref name="ref"/>
+                                <ref name="xref"/>
+                            </choice>
+      </zeroOrMore>
+   </define>
+   <define name="customerSubset">
+      <element name="customerSubset" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(customerSubset) An identifier that indicates that the parent element to which it applies is associated with a specific customer. The content shall be in plainText.</a:documentation>
+         <ref name="entity.noteText"/>
+         <pattern xmlns="http://www.ascc.net/xml/schematron"
+                  name="TBX-Basic-customerSubset-customerSubset-constraint-1">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      context="customerSubset">
+                                    <sch:assert test=".=not(*)">The customer subset must be
+                                        expressed in plainText.</sch:assert>
+                                </sch:rule>
+         </pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="projectSubset">
+      <element name="projectSubset" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(projectSubset) An identifier assigned to a term, record, or entry to indicate that it is related to or used in a project. The content shall be in plainText, and preferably one of a predefined set of picklist values.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="projectSubset">
+                                    <sch:rule context="projectSubset">
+                                        <sch:assert test=".=not(*)">The project subset must be
+                                            expressed in plainText.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="source">
+      <element name="source" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(source) A complete citation of the source of the information in the parent element.</a:documentation>
+         <ref name="entity.noteText"/>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="adminGrp">
+      <element name="adminGrp" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An element that contains a group of elements that contain administrative information.</a:documentation>
+         <ref name="admin"/>
+         <zeroOrMore>
+            <choice>
+                                
+                                <ref name="ref"/>
+                                <ref name="xref"/>
+                            </choice>
+         </zeroOrMore>
+         <ref name="id.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="context">
+      <element name="context" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(context) Contexts must be authentic, that is, they must be obtained from an existing source, and not created by the terminologist. Contexts are documented very frequently in terminology collections. Contexts can provide information for determining term usage and collocations. In TBX, the context is a term-related data-category. A context can be further categorized according to context type.</a:documentation>
+         <ref name="entity.noteText"/>
+         <pattern xmlns="http://www.ascc.net/xml/schematron"
+                  name="TBX-Basic-context-context-constraint-3">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      context="context">
+                                    <sch:assert test="parent::termSec or parent::descripGrp/parent::termSec">A context sentence can only occur at the term (termSec)
+                                        level.</sch:assert>
+                                </sch:rule>
+         </pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="definition">
+      <element name="definition" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(definition) A representation of a concept by a descriptive statement which serves to differentiate that concept from related concepts.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="definition">
+                                    <sch:rule context="definition">
+                                        <sch:assert test="parent::conceptEntry or parent::langSec or parent::termSec or parent::descripGrp/parent::conceptEntry or parent::descripGrp/parent::langSec or parent::descripGrp/parent::termSec"> A definition must occur at the conceptEntry level, the
+                                            langSec level, or the term (termSec) level.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="subjectField">
+      <element name="subjectField" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(subjectField) A field of special knowledge. Subject fields can be expressed in multiple levels, for example: Subject field (level 1): disease, Subject field (level 2): cancer, Subject field (level 3): non-Hodgkin's lymphoma. Subject fields shall be expressed in plainText, and preferably be selected from a defined set of picklist values. Subject fields shall be specified at the concept (conceptEntry) level.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="subjectField">
+                                    <sch:rule context="subjectField">
+                                        <sch:assert test="(.=not(*)) and (parent::conceptEntry or parent::descripGrp/parent::conceptEntry)"> A subject field must be a plainText value. Subject
+                                            fields usually occur at the conceptEntry
+                                            level.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="descripGrp">
+      <element name="descripGrp" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Contains one descrip element as well as additional child elements for associated administrative information.</a:documentation>
+         <ref name="descrip"/>
+         <zeroOrMore>
+            <choice>
+                                <ref name="admin"/>
+                                <ref name="adminGrp"/>
+                                <ref name="transacGrp"/>
+                                
+                                <ref name="ref"/>
+                                <ref name="xref"/>
+                            </choice>
+         </zeroOrMore>
+         <ref name="id.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="crossReference">
+      <element name="crossReference" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(crossReference) A pointer to another related location, such as another entry or another term. The ref element with a type attribute value of cross-reference shall also have a target attribute to point to the identifier of the entry or term.</a:documentation>
+         <text/>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="administrativeStatus">
+      <element name="administrativeStatus" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(administrativeStatus) The status of a term within a certain working environment. The data-category administrativeStatus should be linked, through a target attribute, to a refObject in the back matter that identifies the administrative organization that determined the status. The element termNote when its type attribute has the value administrativeStatus shall contain one of the following values: * admittedTerm-admn-sts  * deprecatedTerm-admn-sts  * legalTerm-admn-sts  * preferredTerm-admn-sts  * regulatedTerm-admn-sts  * standardizedTerm-admn-sts  * supersededTerm-admn-sts The status of terms with respect to a standardization process is covered by normativeAuthorization.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="administrativeStatus">
+                                    <sch:rule context="administrativeStatus">
+                                        <sch:assert test=".=                                             'standardizedTerm-admn-sts' or .='preferredTerm-admn-sts' or .='admittedTerm-admn-sts' or .='deprecatedTerm-admn-sts' or .='supersededTerm-admn-sts' or .='legalTerm-admn-sts' or .='regulatedTerm-admn-sts'">The administrative status must be
+                                            standardizedTerm-admn-sts, preferredTerm-admn-sts,
+                                            admittedTerm-admn-sts, deprecatedTerm-admn-sts,
+                                            supersededTerm-admn-sts, legalTerm-admn-sts, or
+                                            regulatedTerm-admn-sts. </sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="geographicalUsage">
+      <element name="geographicalUsage" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(geographicalUsage) A code identifying any specific geographical area where the term is used, for instance, to differentiate between UK English and US English. Preferred values are language codes combined with geographical codes, from IETF RFC 4646 or its successor, as identified in IETF BCP 47. For example: en-US for American English. The element content shall be expressed in plainText. </a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="geographicalUsage">
+                                    <sch:rule context="geographicalUsage">
+                                        <sch:assert test=".=not(*)">The geographical usage must be
+                                            expressed in plainText. </sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="grammaticalGender">
+      <element name="grammaticalGender" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(grammaticalGender) The gender of the word. The value of the termNote element when it has a type attribute value of grammaticalGender shall be one of: masculine, feminine, neuter, or otherGender.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="grammaticalGender">
+                                    <sch:rule context="grammaticalGender">
+                                        <sch:assert test="(.='masculine' or .='feminine' or .='neuter' or .='otherGender')"> The gender must be masculine, feminine, neuter, or
+                                            otherGender. Gender should be specified at the term
+                                            level (termSec) or at the termCompGrp
+                                            level.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="partOfSpeech">
+      <element name="partOfSpeech" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(partOfSpeech) A category assigned to a word based on its grammatical and semantic properties. For example: noun, verb, or adjective. The element content shall be expressed in plainText, and preferably be limited to a set of picklist values. Only one value shall be permitted for each term in a given entry. For example, the following values are permitted in the TBX-Basic TML: * noun  * verb  * adjective  * adverb  * properNoun  * other</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="partOfSpeech">
+                                    
+                                    <sch:rule context="partOfSpeech">
+                                        <sch:assert test=". = 'noun' or .='verb' or .='adjective' or .='adverb' or .='properNoun' or .='other'">The part of speech must be either noun, verb,
+                                            adjective, adverb, properNoun, or other. </sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="termLocation">
+      <element name="termLocation" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(termLocation) A location in a document, computer file, or other information medium, where the term frequently occurs, such as a user interface object (in software), a packaging element, a component in an industrial process, and so forth. The element content shall be expressed in plainText, and preferably be restricted to a set of picklist values. The following picklist values are recommended for software user interface locations in a Windows environment.  * checkBox  * comboBox  * comboBoxElement  * dialogBox  * groupBox  * informativeMessage  * interactiveMessage  * menuItem  * progressBar  * pushButton  * radioButton  * slider  * spinBox  * tab  * tableText  * textBox  * toolTip  * user-definedType</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="termLocation">
+                                    <sch:rule context="termLocation">
+                                        <sch:assert test=".=not(*)">The termLocation must be a
+                                            plainText value. It should be specified only at the term
+                                            (termSec) level.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="termType">
+      <element name="termType" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(termType) A categorization of a term with respect to formal representations of terms or where or how they are used, for example, acronym. The content of the termNote element when it has a type attribute value of termType shall be one of the following: * abbreviation  * acronym  * clippedTerm  * commonName  * entryTerm  * equation  * formula  * fullForm  * initialism  * internationalism  * internationalScientificTerm  * logicalExpression  * partNumber  * phraseologicalUnit  * transcribedForm  * transliteratedForm  * shortForm  * shortcut  * sku  * standardText  * string  * symbol  * synonym  * synonymousPhrase  * variantRefer to ISO 12620 for definitions of the above term types. The value shortcut refers to a string that acts as a keyboard shortcut on computers, for example, Ctrl + V is a term that represents a keyboard shortcut for the concept of paste.</a:documentation>
+         <ref name="entity.noteText"/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="termType">
+                                    <sch:rule context="termType">
+                                        <sch:assert test=". = 'abbreviation' or .='initialism' or .='acronym' or .='clippedTerm' or .='entryTerm' or .='synonym' or .='internationalScientificTerm' or .='fullForm' or .='transcribedForm' or .='symbol' or .='formula' or .='equation' or .='logicalExpression' or .='commonName' or .='variant' or .='shortForm' or .='transliteratedForm' or .='sku' or .='partNumber' or .='phraseologicalUnit' or .='synonymousPhrase' or .='standardText' or .='string' or .='internationalism' or .='shortcut'">The type of term can only be one of the following
+                                            values: abbreviation, initialism, acronym, clippedTerm,
+                                            entryTerm, synonym, internationalScientificTerm,
+                                            fullForm, transcribedForm, symbol, formula, equation,
+                                            logicalExpression, commonName, variant, shortForm,
+                                            transliteratedForm, sku, partNumber, phraseologicalUnit,
+                                            synonymousPhrase, standardText, string,
+                                            internationalism, shortcut.</sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="termNoteGrp">
+      <element name="termNoteGrp" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A grouping element that contains one termNote element, and auxiliary information such as administrative information, transaction information, notes and cross references. It does not allow any descrip elements. It can only appear at the term (termSec) level and below.</a:documentation>
+         <ref name="termNote"/>
+         <ref name="entity.noteLinkInfo"/>
+         <ref name="id.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="transactionType">
+      <element name="transactionType" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(transactionType) A record that indicates the stage of the entry within the overall process of creation, approval, and use of a terminology entry.</a:documentation>
+         <text/>
+         <sch:pattern xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://www.ascc.net/xml/schematron"
+                      name="transactionType">
+                                    <sch:rule context="transactionType">
+                                        <sch:assert test=". =                                             'origination' or .='input' or .='modification' or .='check' or .='approval' or                                              .='withdrawl' or .='standardization' or .='exportation' or .='importation' or .='proposal' or .='userAccess'">The content of this element indicates the type of
+                                            transaction and must be one of the following values:
+                                            origination, input, modification, check, approval,
+                                            withdrawal, standardization, exportation, importation,
+                                            proposal, userAccess. </sch:assert>
+                                    </sch:rule>
+                                </sch:pattern>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="transacGrp">
+      <element name="transacGrp" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An element that includes child elements that provide information about a transaction. </a:documentation>
+         <ref name="transac"/>
+         <zeroOrMore>
+            <choice>
+                                <ref name="transacNote"/>
+                                
+                                
+                                <ref name="ref"/>
+                                <ref name="xref"/>
+                            </choice>
+         </zeroOrMore>
+         <ref name="id.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="responsibility">
+      <element name="responsibility" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(responsibility) The name of a person or entity associated with a terminology management transaction. The transacNote element with a type attribute value of responsibility can also have a target attribute to point to the identifier of a bibliographic entry in a refObject that contains information about the person or entity.</a:documentation>
+         <text/>
+         <ref name="IDLangTgtDtyp.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="xGraphic">
+      <element name="xGraphic" ns="http://www.tbxinfo.net/ns/dct/basic">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(xGraphic) External graphic file.</a:documentation>
+         <text/>
+         <ref name="id.attributes"/>
+         <attribute name="target">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The URI of the external object.</a:documentation>
+            <text/>
+         </attribute>
+         <empty/>
+      </element>
+   </define>
+   <define name="id.attributes">
+      <ref name="id.attribute.id"/>
+   </define>
+   <define name="id.attribute.id">
+      <optional>
+         <attribute name="id">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="target-IDREF.attributes">
+      <ref name="target-IDREF.attribute.target"/>
+   </define>
+   <define name="target-IDREF.attribute.target">
+      <optional>
+         <attribute name="target">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="lang.attributes">
+      <ref name="lang.attribute.xmllang"/>
+   </define>
+   <define name="lang.attribute.xmllang">
+      <optional>
+         <attribute name="xml:lang">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates the language of the element content. The allowed values are found in IETF RFC 4646 or its successor. This attribute is optional for elements that use this attribute class. For a description, see the information at the tbx element.</a:documentation>
+            <text/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="IDLangTgtDtyp.attributes">
+      <ref name="lang.attributes"/>
+      <ref name="id.attributes"/>
+      <ref name="target-IDREF.attributes"/>
+      <ref name="IDLangTgtDtyp.attribute.datatype"/>
+   </define>
+   <define name="IDLangTgtDtyp.attribute.datatype">
+      <optional>
+         <attribute name="datatype">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The data type of plainText, or what is known as PCDATA.</a:documentation>
+            <text/>
+         </attribute>
+      </optional>
+   </define>
+   <start>
+      <choice>
+         <ref name="adminGrp"/>
+         <ref name="descripGrp"/>
+         <ref name="transacGrp"/>
+         <ref name="termNoteGrp"/>
+         <ref name="admin"/>
+         <ref name="descrip"/>
+         <ref name="termNote"/>
+         <ref name="ref"/>
+         <ref name="transacNote"/>
+         <ref name="xref"/>
+      </choice>
+   </start>
+</grammar>
