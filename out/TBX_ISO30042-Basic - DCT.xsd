@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.tbxinfo.net/ns/dct/basic" xmlns:basic="http://www.tbxinfo.net/ns/dct/basic">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <!--
+    Schema generated from ODD source 2017-06-09T10:51:11Z. .
+    TEI Edition: Version 2.8.0. Last updated on
+    	6th April 2015, revision 13197
+    TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.8.0/
+    
+  -->
+  <!---->
+  <xs:element name="admin" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="descrip" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ref" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="termNote" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transac" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transacNote" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:IDLangTgtDtyp.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="xref" abstract="true">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="basic:id.attributes"/>
+      <xs:attribute name="target" use="required">
+        <xs:annotation>
+          <xs:documentation>The URI of the external object.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="entity.noteLinkInfo">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="basic:admin"/>
+        <xs:element ref="basic:adminGrp"/>
+        <xs:element ref="basic:transacGrp"/>
+        <xs:element ref="basic:ref"/>
+        <xs:element ref="basic:xref"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="customerSubset" substitutionGroup="basic:admin">
+    <xs:annotation>
+      <xs:documentation>(customerSubset) An identifier that indicates that the parent element to which it applies is associated with a specific customer. The content shall be in plainText.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="projectSubset" substitutionGroup="basic:admin">
+    <xs:annotation>
+      <xs:documentation>(projectSubset) An identifier assigned to a term, record, or entry to indicate that it is related to or used in a project. The content shall be in plainText, and preferably one of a predefined set of picklist values.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="source" substitutionGroup="basic:admin">
+    <xs:annotation>
+      <xs:documentation>(source) A complete citation of the source of the information in the parent element.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="adminGrp">
+    <xs:annotation>
+      <xs:documentation>An element that contains a group of elements that contain administrative information.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:admin"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="basic:ref"/>
+          <xs:element ref="basic:xref"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="basic:id.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="context" substitutionGroup="basic:descrip">
+    <xs:annotation>
+      <xs:documentation>(context) Contexts must be authentic, that is, they must be obtained from an existing source, and not created by the terminologist. Contexts are documented very frequently in terminology collections. Contexts can provide information for determining term usage and collocations. In TBX, the context is a term-related data-category. A context can be further categorized according to context type.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="definition" substitutionGroup="basic:descrip">
+    <xs:annotation>
+      <xs:documentation>(definition) A representation of a concept by a descriptive statement which serves to differentiate that concept from related concepts.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="subjectField" substitutionGroup="basic:descrip">
+    <xs:annotation>
+      <xs:documentation>(subjectField) A field of special knowledge. Subject fields can be expressed in multiple levels, for example: Subject field (level 1): disease, Subject field (level 2): cancer, Subject field (level 3): non-Hodgkin's lymphoma. Subject fields shall be expressed in plainText, and preferably be selected from a defined set of picklist values. Subject fields shall be specified at the concept (conceptEntry) level.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripGrp">
+    <xs:annotation>
+      <xs:documentation>Contains one descrip element as well as additional child elements for associated administrative information.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:descrip"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="basic:admin"/>
+          <xs:element ref="basic:adminGrp"/>
+          <xs:element ref="basic:transacGrp"/>
+          <xs:element ref="basic:ref"/>
+          <xs:element ref="basic:xref"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="basic:id.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="crossReference" substitutionGroup="basic:ref">
+    <xs:annotation>
+      <xs:documentation>(crossReference) A pointer to another related location, such as another entry or another term. The ref element with a type attribute value of cross-reference shall also have a target attribute to point to the identifier of the entry or term.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="administrativeStatus" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(administrativeStatus) The status of a term within a certain working environment. The data-category administrativeStatus should be linked, through a target attribute, to a refObject in the back matter that identifies the administrative organization that determined the status. The element termNote when its type attribute has the value administrativeStatus shall contain one of the following values: * admittedTerm-admn-sts  * deprecatedTerm-admn-sts  * legalTerm-admn-sts  * preferredTerm-admn-sts  * regulatedTerm-admn-sts  * standardizedTerm-admn-sts  * supersededTerm-admn-sts The status of terms with respect to a standardization process is covered by normativeAuthorization.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="geographicalUsage" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(geographicalUsage) A code identifying any specific geographical area where the term is used, for instance, to differentiate between UK English and US English. Preferred values are language codes combined with geographical codes, from IETF RFC 4646 or its successor, as identified in IETF BCP 47. For example: en-US for American English. The element content shall be expressed in plainText. </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="grammaticalGender" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(grammaticalGender) The gender of the word. The value of the termNote element when it has a type attribute value of grammaticalGender shall be one of: masculine, feminine, neuter, or otherGender.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="partOfSpeech" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(partOfSpeech) A category assigned to a word based on its grammatical and semantic properties. For example: noun, verb, or adjective. The element content shall be expressed in plainText, and preferably be limited to a set of picklist values. Only one value shall be permitted for each term in a given entry. For example, the following values are permitted in the TBX-Basic TML: * noun  * verb  * adjective  * adverb  * properNoun  * other</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="termLocation" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(termLocation) A location in a document, computer file, or other information medium, where the term frequently occurs, such as a user interface object (in software), a packaging element, a component in an industrial process, and so forth. The element content shall be expressed in plainText, and preferably be restricted to a set of picklist values. The following picklist values are recommended for software user interface locations in a Windows environment.  * checkBox  * comboBox  * comboBoxElement  * dialogBox  * groupBox  * informativeMessage  * interactiveMessage  * menuItem  * progressBar  * pushButton  * radioButton  * slider  * spinBox  * tab  * tableText  * textBox  * toolTip  * user-definedType</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="termType" substitutionGroup="basic:termNote">
+    <xs:annotation>
+      <xs:documentation>(termType) A categorization of a term with respect to formal representations of terms or where or how they are used, for example, acronym. The content of the termNote element when it has a type attribute value of termType shall be one of the following: * abbreviation  * acronym  * clippedTerm  * commonName  * entryTerm  * equation  * formula  * fullForm  * initialism  * internationalism  * internationalScientificTerm  * logicalExpression  * partNumber  * phraseologicalUnit  * transcribedForm  * transliteratedForm  * shortForm  * shortcut  * sku  * standardText  * string  * symbol  * synonym  * synonymousPhrase  * variantRefer to ISO 12620 for definitions of the above term types. The value shortcut refers to a string that acts as a keyboard shortcut on computers, for example, Ctrl + V is a term that represents a keyboard shortcut for the concept of paste.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="termNoteGrp">
+    <xs:annotation>
+      <xs:documentation>A grouping element that contains one termNote element, and auxiliary information such as administrative information, transaction information, notes and cross references. It does not allow any descrip elements. It can only appear at the term (termSec) level and below.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:termNote"/>
+        <xs:group ref="basic:entity.noteLinkInfo"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="basic:id.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transactionType" substitutionGroup="basic:transac">
+    <xs:annotation>
+      <xs:documentation>(transactionType) A record that indicates the stage of the entry within the overall process of creation, approval, and use of a terminology entry.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="transacGrp">
+    <xs:annotation>
+      <xs:documentation>An element that includes child elements that provide information about a transaction. </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:transac"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="basic:transacNote"/>
+          <xs:element ref="basic:ref"/>
+          <xs:element ref="basic:xref"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="basic:id.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="responsibility" substitutionGroup="basic:transacNote">
+    <xs:annotation>
+      <xs:documentation>(responsibility) The name of a person or entity associated with a terminology management transaction. The transacNote element with a type attribute value of responsibility can also have a target attribute to point to the identifier of a bibliographic entry in a refObject that contains information about the person or entity.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="xGraphic" substitutionGroup="basic:xref">
+    <xs:annotation>
+      <xs:documentation>(xGraphic) External graphic file.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:attributeGroup name="id.attributes">
+    <xs:attributeGroup ref="basic:id.attribute.id"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="id.attribute.id">
+    <xs:attribute name="id">
+      <xs:annotation>
+        <xs:documentation/>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="target-IDREF.attributes">
+    <xs:attributeGroup ref="basic:target-IDREF.attribute.target"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="target-IDREF.attribute.target">
+    <xs:attribute name="target">
+      <xs:annotation>
+        <xs:documentation/>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="lang.attributes">
+    <xs:attributeGroup ref="basic:lang.attribute.xmllang"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="lang.attribute.xmllang">
+    <xs:attribute ref="xml:lang"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="IDLangTgtDtyp.attributes">
+    <xs:attributeGroup ref="basic:lang.attributes"/>
+    <xs:attributeGroup ref="basic:id.attributes"/>
+    <xs:attributeGroup ref="basic:target-IDREF.attributes"/>
+    <xs:attributeGroup ref="basic:IDLangTgtDtyp.attribute.datatype"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="IDLangTgtDtyp.attribute.datatype">
+    <xs:attribute name="datatype">
+      <xs:annotation>
+        <xs:documentation>The data type of plainText, or what is known as PCDATA.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+</xs:schema>
